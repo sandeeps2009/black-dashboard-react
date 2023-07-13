@@ -38,8 +38,11 @@ import {
   NavbarToggler,
   ModalHeader,
 } from "reactstrap";
+import { useTranslation } from "react-i18next";
 
 function AdminNavbar(props) {
+  const { t } = useTranslation();
+
   const [collapseOpen, setcollapseOpen] = React.useState(false);
   const [modalSearch, setmodalSearch] = React.useState(false);
   const [color, setcolor] = React.useState("navbar-transparent");
@@ -87,9 +90,10 @@ function AdminNavbar(props) {
                 <span className="navbar-toggler-bar bar3" />
               </NavbarToggler>
             </div>
-            <NavbarBrand href="#pablo" onClick={(e) => e.preventDefault()}>
-              {props.brandText}
-            </NavbarBrand>
+            <div className="logo">
+              <img src={props.brandlogo} alt="CDAC Logo" />
+              <div className="logo-text">{props.brandText}</div>
+            </div>
           </div>
           <NavbarToggler onClick={toggleCollapse}>
             <span className="navbar-toggler-bar navbar-kebab" />
@@ -112,7 +116,7 @@ function AdminNavbar(props) {
                   nav
                 >
                   <div className="notification d-none d-lg-block d-xl-block" />
-                  <i className="tim-icons icon-sound-wave" />
+                  <i className="tim-icons icon-bell-55" />
                   <p className="d-lg-none">Notifications</p>
                 </DropdownToggle>
                 <DropdownMenu className="dropdown-navbar" right tag="ul">

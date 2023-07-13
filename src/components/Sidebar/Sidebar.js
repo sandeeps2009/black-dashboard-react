@@ -30,7 +30,6 @@ import {
   BackgroundColorContext,
   backgroundColors,
 } from "contexts/BackgroundColorContext";
-
 var ps;
 
 function Sidebar(props) {
@@ -113,7 +112,7 @@ function Sidebar(props) {
         <div className="sidebar" data={color}>
           <div className="sidebar-wrapper" ref={sidebarRef}>
             {logoImg !== null || logoText !== null ? (
-              <div className="logo">
+              <div className="logo header">
                 {logoImg}
                 {logoText}
               </div>
@@ -132,6 +131,17 @@ function Sidebar(props) {
                       to={prop.layout + prop.path}
                       className="nav-link"
                       onClick={props.toggleSidebar}
+                      isActive={(match, location) => {
+                        if (match) {
+                          // Return true to apply the "active" class
+                          return true;
+                        }
+                        // Custom logic to handle nested routes
+                        const isActive = location.pathname.startsWith(
+                          prop.layout + prop.path
+                        );
+                        return isActive;
+                      }}
                     >
                       <i className={prop.icon} />
                       <p>{rtlActive ? prop.rtlName : prop.name}</p>
@@ -139,12 +149,6 @@ function Sidebar(props) {
                   </li>
                 );
               })}
-              <li className="active-pro">
-                <ReactstrapNavLink href="https://www.cdac.in">
-                  {/* <i className="tim-icons icon-spaceship" /> */}
-                  <p>CDAC</p>
-                </ReactstrapNavLink>
-              </li>
             </Nav>
           </div>
         </div>

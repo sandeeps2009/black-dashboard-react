@@ -759,8 +759,8 @@ $navbar-nav-link-border-radius: $border-radius !default;
 /* navbar color */
 $navbar-color: #1a1e34 !default;
 $navbar-dark-bg: transparent !default;
-$navbar-dark-hover-bg: rgba(255, 255, 255, 0.1);
-$navbar-dark-active-bg: rgba(255, 255, 255, 0.1);
+$navbar-dark-hover-bg: rgba(255, 255, 255, 0.3);
+$navbar-dark-active-bg: rgba(255, 255, 255, 0.3);
 $navbar-dark-color: rgba($white, 0.95);
 $navbar-dark-hover-color: rgba($white, 0.65);
 $navbar-dark-active-color: rgba($white, 0.65);
@@ -1002,3 +1002,6 @@ $footer-link-color: $gray-600 !default;
 $footer-link-hover-color: $gray-700 !default;
 $footer-heading-color: $gray-600 !default;
 $footer-heading-font-size: $font-size-sm !default;
+
+//Sidebar
+$sidebar-header: #192b42;

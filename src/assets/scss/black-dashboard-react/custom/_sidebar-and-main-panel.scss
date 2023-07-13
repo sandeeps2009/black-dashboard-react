@@ -17,7 +17,7 @@
 .sidebar,
 .off-canvas-sidebar {
   // BG color
-  @include linear-gradient($default, $default);
+  @include linear-gradient($default-states, $default);
   height: calc(100vh - 90px);
   width: 230px;
   position: fixed;
@@ -31,6 +31,8 @@
   margin-top: 80px;
   margin-left: 20px;
   border-radius: 5px;
+  margin-top: 80px; /* Add this line */
+  margin-left: 20px; /* Add this line */
 
   .sidebar-wrapper {
     width: $full-width;
@@ -39,7 +41,18 @@
     z-index: 4;
     position: relative;
     overflow: auto;
-
+    .nav-link.active {
+      border-radius: 5px;
+      color: $white;
+      // background-color: #586aa7;
+      background-color: $navbar-dark-active-bg;
+    }
+    .nav-link:hover {
+      border-radius: 5px;
+      color: $white;
+      // background-color: #768dc6;
+      background-color: $navbar-dark-hover-bg;
+    }
     .dropdown .dropdown-backdrop {
       display: none !important;
     }
@@ -264,10 +277,13 @@
     position: relative;
     padding: $padding-base-vertical $padding-base-horizontal;
     z-index: 4;
-
     a.logo-mini,
     a.logo-normal {
       @extend .animation-transition-general;
+    }
+    &.header {
+      background-color: $sidebar-header;
+      color: #ffffff;
     }
 
     a.logo-mini {
@@ -433,7 +449,8 @@
   float: right;
   width: $full-width;
   min-height: 100vh;
-  border-top: 2px solid $primary;
+  border-top: 4px solid;
+  border-color: aquamarine;
   background: linear-gradient($background-black, $background-states-black);
 
   @include transitions(0.5s, cubic-bezier(0.685, 0.0473, 0.346, 1));

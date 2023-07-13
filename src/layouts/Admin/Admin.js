@@ -30,10 +30,13 @@ import routes from "routes.js";
 
 import logo from "assets/img/react-logo.png";
 import { BackgroundColorContext } from "contexts/BackgroundColorContext";
-
+import { useTranslation } from "react-i18next";
+import brandLogo from "../../assets/img/cdacLogo.png";
 var ps;
 
 function Admin(props) {
+  const { t } = useTranslation();
+
   const location = useLocation();
   const mainPanelRef = React.useRef(null);
   const [sidebarOpened, setsidebarOpened] = React.useState(
@@ -105,15 +108,16 @@ function Admin(props) {
             <Sidebar
               routes={routes}
               logo={{
-                outterLink: "https://www.creative-tim.com/",
-                text: "Creative Tim",
+                outterLink: "https://www.cdac.in",
+                text: t("SCADA"),
                 imgSrc: logo,
               }}
               toggleSidebar={toggleSidebar}
             />
             <div className="main-panel" ref={mainPanelRef} data={color}>
               <AdminNavbar
-                brandText={getBrandText(location.pathname)}
+                brandlogo={brandLogo}
+                brandText={t("RtScadaDashboard")}
                 toggleSidebar={toggleSidebar}
                 sidebarOpened={sidebarOpened}
               />
