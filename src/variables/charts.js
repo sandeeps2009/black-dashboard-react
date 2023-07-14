@@ -21,6 +21,20 @@
 
 // chartExample1 and chartExample2 options
 let chart1_2_options = {
+  //Disable the chart button
+  plugins: {
+    legend: {
+      display: false, // Hide the legend
+    },
+    tooltip: {
+      enabled: false, // Disable tooltips
+    },
+    interaction: {
+      mode: "index", // Enable the index mode for hover interactions
+      intersect: false, // Disable point intersection events
+    },
+  },
+
   maintainAspectRatio: false,
   legend: {
     display: false,

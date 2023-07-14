@@ -64,10 +64,10 @@ function Dashboard(props) {
               <CardHeader>
                 <Row>
                   <Col className="text-left" sm="6">
-                    <h5 className="card-category">Total Shipments</h5>
-                    <CardTitle tag="h2">Performance</CardTitle>
+                    <h5 className="card-category">SLDC Demand and Supply</h5>
+                    <CardTitle tag="h2">State Power Demand</CardTitle>
                   </Col>
-                  <Col sm="6">
+                  {/* <Col sm="6">
                     <ButtonGroup
                       className="btn-group-toggle float-right"
                       data-toggle="buttons"
@@ -124,7 +124,7 @@ function Dashboard(props) {
                         </span>
                       </Button>
                     </ButtonGroup>
-                  </Col>
+                  </Col> */}
                 </Row>
               </CardHeader>
               <CardBody>

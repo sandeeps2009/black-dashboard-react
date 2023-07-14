@@ -108,7 +108,7 @@ function Admin(props) {
             <Sidebar
               routes={routes}
               logo={{
-                outterLink: "https://www.cdac.in",
+                // outterLink: "https://www.cdac.in",
                 text: t("SCADA"),
                 imgSrc: logo,
               }}

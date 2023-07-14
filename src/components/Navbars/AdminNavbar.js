@@ -1,20 +1,3 @@
-/*!
-
-=========================================================
-* Black Dashboard React v1.2.2
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/black-dashboard-react
-* Copyright 2023 Creative Tim (https://www.creative-tim.com)
-* Licensed under MIT (https://github.com/creativetimofficial/black-dashboard-react/blob/master/LICENSE.md)
-
-* Coded by Creative Tim
-
-=========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-*/
 import React from "react";
 // nodejs library that concatenates classes
 import classNames from "classnames";
@@ -74,6 +57,28 @@ function AdminNavbar(props) {
   const toggleModalSearch = () => {
     setmodalSearch(!modalSearch);
   };
+  const notifications = [
+    {
+      text: "Notification 1",
+      link: "",
+    },
+    {
+      text: "Notification 2",
+      link: "",
+    },
+    {
+      text: "Notification 3",
+      link: "",
+    },
+    {
+      text: "Notification 4",
+      link: "",
+    },
+    {
+      text: "Notification 5",
+      link: "",
+    },
+  ];
   return (
     <>
       <Navbar className={classNames("navbar-absolute", color)} expand="lg">
@@ -105,7 +110,7 @@ function AdminNavbar(props) {
               <InputGroup className="search-bar">
                 <Button color="link" onClick={toggleModalSearch}>
                   <i className="tim-icons icon-zoom-split" />
-                  <span className="d-lg-none d-md-block">Search</span>
+                  <span className="d-lg-none d-md-block">{t("search")}</span>
                 </Button>
               </InputGroup>
               <UncontrolledDropdown nav>
@@ -117,34 +122,16 @@ function AdminNavbar(props) {
                 >
                   <div className="notification d-none d-lg-block d-xl-block" />
                   <i className="tim-icons icon-bell-55" />
-                  <p className="d-lg-none">Notifications</p>
+                  <p className="d-lg-none">{t("notification")}</p>
                 </DropdownToggle>
                 <DropdownMenu className="dropdown-navbar" right tag="ul">
-                  <NavLink tag="li">
-                    <DropdownItem className="nav-item">
-                      Mike John responded to your email
-                    </DropdownItem>
-                  </NavLink>
-                  <NavLink tag="li">
-                    <DropdownItem className="nav-item">
-                      You have 5 more tasks
-                    </DropdownItem>
-                  </NavLink>
-                  <NavLink tag="li">
-                    <DropdownItem className="nav-item">
-                      Your friend Michael is in town
-                    </DropdownItem>
-                  </NavLink>
-                  <NavLink tag="li">
-                    <DropdownItem className="nav-item">
-                      Another notification
-                    </DropdownItem>
-                  </NavLink>
-                  <NavLink tag="li">
-                    <DropdownItem className="nav-item">
-                      Another one
-                    </DropdownItem>
-                  </NavLink>
+                  {notifications.map((item, index) => (
+                    <NavLink tag="li" key={index} to={item.link}>
+                      <DropdownItem className="nav-item">
+                        {item.text}
+                      </DropdownItem>
+                    </NavLink>
+                  ))}
                 </DropdownMenu>
               </UncontrolledDropdown>
               <UncontrolledDropdown nav>
@@ -162,14 +149,20 @@ function AdminNavbar(props) {
                 </DropdownToggle>
                 <DropdownMenu className="dropdown-navbar" right tag="ul">
                   <NavLink tag="li">
-                    <DropdownItem className="nav-item">Profile</DropdownItem>
+                    <DropdownItem className="nav-item">
+                      {t("profile")}
+                    </DropdownItem>
                   </NavLink>
                   <NavLink tag="li">
-                    <DropdownItem className="nav-item">Settings</DropdownItem>
+                    <DropdownItem className="nav-item">
+                      {t("settings")}
+                    </DropdownItem>
                   </NavLink>
                   <DropdownItem divider tag="li" />
                   <NavLink tag="li">
-                    <DropdownItem className="nav-item">Log out</DropdownItem>
+                    <DropdownItem className="nav-item">
+                      {t("logout")}
+                    </DropdownItem>
                   </NavLink>
                 </DropdownMenu>
               </UncontrolledDropdown>
@@ -184,7 +177,7 @@ function AdminNavbar(props) {
         toggle={toggleModalSearch}
       >
         <ModalHeader>
-          <Input placeholder="SEARCH" type="text" />
+          <Input placeholder={t("search")} type="text" />
           <button
             aria-label="Close"
             className="close"

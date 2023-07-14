@@ -25,5 +25,9 @@
   "ScrollingMessage": "Stay ahead of the curve with our state-of-the-art website, providing you with real-time updates, comprehensive resources, and intuitive tools.",
   "SCADA": "SCADA",
   "Dashboard": "Dashboard",
-  "RtScadaDashboard": "Realtime SCADA Dashboard"
+  "RtScadaDashboard": "Realtime SCADA Dashboard",
+  "notification": "Notification",
+  "profile": "Profile",
+  "settings": "Settings",
+  "logout": "Logout"
 }
