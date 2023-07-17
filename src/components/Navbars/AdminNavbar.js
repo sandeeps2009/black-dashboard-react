@@ -22,10 +22,16 @@ import {
   ModalHeader,
 } from "reactstrap";
 import { useTranslation } from "react-i18next";
-
+import { useSelector, useDispatch } from "react-redux";
+import notifications from "../../data/notifications";
+import { logout } from "../../actions/authActions";
+import { useNavigate } from "react-router-dom";
 function AdminNavbar(props) {
+  const navigate = useNavigate();
+  const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
+  const dispatch = useDispatch();
   const { t } = useTranslation();
-
+  console.log("props" + JSON.stringify(props));
   const [collapseOpen, setcollapseOpen] = React.useState(false);
   const [modalSearch, setmodalSearch] = React.useState(false);
   const [color, setcolor] = React.useState("navbar-transparent");
@@ -57,28 +63,10 @@ function AdminNavbar(props) {
   const toggleModalSearch = () => {
     setmodalSearch(!modalSearch);
   };
-  const notifications = [
-    {
-      text: "Notification 1",
-      link: "",
-    },
-    {
-      text: "Notification 2",
-      link: "",
-    },
-    {
-      text: "Notification 3",
-      link: "",
-    },
-    {
-      text: "Notification 4",
-      link: "",
-    },
-    {
-      text: "Notification 5",
-      link: "",
-    },
-  ];
+  const handleLogout = () => {
+    dispatch(logout());
+    navigate("/login");
+  };
   return (
     <>
       <Navbar className={classNames("navbar-absolute", color)} expand="lg">
@@ -100,75 +88,81 @@ function AdminNavbar(props) {
               <div className="logo-text">{props.brandText}</div>
             </div>
           </div>
-          <NavbarToggler onClick={toggleCollapse}>
-            <span className="navbar-toggler-bar navbar-kebab" />
-            <span className="navbar-toggler-bar navbar-kebab" />
-            <span className="navbar-toggler-bar navbar-kebab" />
-          </NavbarToggler>
-          <Collapse navbar isOpen={collapseOpen}>
-            <Nav className="ml-auto" navbar>
-              <InputGroup className="search-bar">
-                <Button color="link" onClick={toggleModalSearch}>
-                  <i className="tim-icons icon-zoom-split" />
-                  <span className="d-lg-none d-md-block">{t("search")}</span>
-                </Button>
-              </InputGroup>
-              <UncontrolledDropdown nav>
-                <DropdownToggle
-                  caret
-                  color="default"
-                  data-toggle="dropdown"
-                  nav
-                >
-                  <div className="notification d-none d-lg-block d-xl-block" />
-                  <i className="tim-icons icon-bell-55" />
-                  <p className="d-lg-none">{t("notification")}</p>
-                </DropdownToggle>
-                <DropdownMenu className="dropdown-navbar" right tag="ul">
-                  {notifications.map((item, index) => (
-                    <NavLink tag="li" key={index} to={item.link}>
-                      <DropdownItem className="nav-item">
-                        {item.text}
-                      </DropdownItem>
-                    </NavLink>
-                  ))}
-                </DropdownMenu>
-              </UncontrolledDropdown>
-              <UncontrolledDropdown nav>
-                <DropdownToggle
-                  caret
-                  color="default"
-                  nav
-                  onClick={(e) => e.preventDefault()}
-                >
-                  <div className="photo">
-                    <img alt="..." src={require("assets/img/anime3.png")} />
-                  </div>
-                  <b className="caret d-none d-lg-block d-xl-block" />
-                  <p className="d-lg-none">Log out</p>
-                </DropdownToggle>
-                <DropdownMenu className="dropdown-navbar" right tag="ul">
-                  <NavLink tag="li">
-                    <DropdownItem className="nav-item">
-                      {t("profile")}
-                    </DropdownItem>
-                  </NavLink>
-                  <NavLink tag="li">
-                    <DropdownItem className="nav-item">
-                      {t("settings")}
-                    </DropdownItem>
-                  </NavLink>
-                  <DropdownItem divider tag="li" />
-                  <NavLink tag="li">
-                    <DropdownItem className="nav-item">
-                      {t("logout")}
-                    </DropdownItem>
-                  </NavLink>
-                </DropdownMenu>
-              </UncontrolledDropdown>
-              <li className="separator d-lg-none" />
-            </Nav>
-          </Collapse>
+          {isLoggedIn === true && (
+            <>
+              <NavbarToggler onClick={toggleCollapse}>
+                <span className="navbar-toggler-bar navbar-kebab" />
+                <span className="navbar-toggler-bar navbar-kebab" />
+                <span className="navbar-toggler-bar navbar-kebab" />
+              </NavbarToggler>
+              <Collapse navbar isOpen={collapseOpen}>
+                <Nav className="ml-auto" navbar>
+                  <InputGroup className="search-bar">
+                    <Button color="link" onClick={toggleModalSearch}>
+                      <i className="tim-icons icon-zoom-split" />
+                      <span className="d-lg-none d-md-block">
+                        {t("search")}
+                      </span>
+                    </Button>
+                  </InputGroup>
+                  <UncontrolledDropdown nav>
+                    <DropdownToggle
+                      caret
+                      color="default"
+                      data-toggle="dropdown"
+                      nav
+                    >
+                      <div className="notification d-none d-lg-block d-xl-block" />
+                      <i className="tim-icons icon-bell-55" />
+                      <p className="d-lg-none">{t("notification")}</p>
+                    </DropdownToggle>
+                    <DropdownMenu className="dropdown-navbar" right tag="ul">
+                      {notifications.map((item, index) => (
+                        <NavLink tag="li" key={index} to={item.link}>
+                          <DropdownItem className="nav-item">
+                            {item.text}
+                          </DropdownItem>
+                        </NavLink>
+                      ))}
+                    </DropdownMenu>
+                  </UncontrolledDropdown>
+                  <UncontrolledDropdown nav>
+                    <DropdownToggle
+                      caret
+                      color="default"
+                      nav
+                      onClick={(e) => e.preventDefault()}
+                    >
+                      <div className="photo">
+                        <img alt="..." src={require("assets/img/anime3.png")} />
+                      </div>
+                      <b className="caret d-none d-lg-block d-xl-block" />
+                      <p className="d-lg-none">Log out</p>
+                    </DropdownToggle>
+                    <DropdownMenu className="dropdown-navbar" right tag="ul">
+                      <NavLink tag="li">
+                        <DropdownItem className="nav-item">
+                          {t("profile")}
+                        </DropdownItem>
+                      </NavLink>
+                      <NavLink tag="li">
+                        <DropdownItem className="nav-item">
+                          {t("settings")}
+                        </DropdownItem>
+                      </NavLink>
+                      <DropdownItem divider tag="li" />
+                      <NavLink tag="li" onClick={handleLogout}>
+                        <DropdownItem className="nav-item">
+                          {t("logout")}
+                        </DropdownItem>
+                      </NavLink>
+                    </DropdownMenu>
+                  </UncontrolledDropdown>
+                  <li className="separator d-lg-none" />
+                </Nav>
+              </Collapse>
+            </>
+          )}
         </Container>
       </Navbar>
       <Modal

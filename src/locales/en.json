@@ -29,5 +29,8 @@
   "notification": "Notification",
   "profile": "Profile",
   "settings": "Settings",
-  "logout": "Logout"
+  "logout": "Logout",
+  "login": "Login",
+  "username": "Username",
+  "password": "Passowrd"
 }

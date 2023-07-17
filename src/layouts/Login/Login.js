@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Route, Routes, Navigate, useLocation } from "react-router-dom";
 // javascript plugin used to create scrollbars on windows
 import PerfectScrollbar from "perfect-scrollbar";
@@ -15,11 +15,12 @@ import logo from "assets/img/react-logo.png";
 import { BackgroundColorContext } from "contexts/BackgroundColorContext";
 import { useTranslation } from "react-i18next";
 import brandLogo from "../../assets/img/cdacLogo.png";
+import LoginView from "../../views/Login.js";
 var ps;
 
-function Admin(props) {
+function Login(props) {
   const { t } = useTranslation();
-
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const location = useLocation();
   const mainPanelRef = React.useRef(null);
   const [sidebarOpened, setsidebarOpened] = React.useState(
@@ -88,34 +89,15 @@ function Admin(props) {
       {({ color, changeColor }) => (
         <React.Fragment>
           <div className="wrapper">
-            <Sidebar
-              routes={routes}
-              logo={{
-                // outterLink: "https://www.cdac.in",
-                text: t("SCADA"),
-                imgSrc: logo,
-              }}
-              toggleSidebar={toggleSidebar}
-            />
             <div className="main-panel" ref={mainPanelRef} data={color}>
               <AdminNavbar
                 brandlogo={brandLogo}
                 brandText={t("RtScadaDashboard")}
                 toggleSidebar={toggleSidebar}
                 sidebarOpened={sidebarOpened}
-                isLoggedIn={props.isLoggedIn}
+                isLoggedIn={isLoggedIn}
               />
-              <Routes>
-                {getRoutes(routes)}
-                <Route
-                  path="/"
-                  element={<Navigate to="/admin/dashboard" replace />}
-                />
-              </Routes>
-              {
-                // we don't want the Footer to be rendered on map page
-                location.pathname === "/admin/maps" ? null : <Footer fluid />
-              }
+              <LoginView />
             </div>
           </div>
           <FixedPlugin bgColor={color} handleBgClick={changeColor} />
@@ -125,4 +107,4 @@ function Admin(props) {
   );
 }
 
-export default Admin;
+export default Login;
