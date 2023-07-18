@@ -1,32 +1,29 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import { Route, Routes, Navigate, useLocation } from "react-router-dom";
-// javascript plugin used to create scrollbars on windows
 import PerfectScrollbar from "perfect-scrollbar";
-
-// core components
 import AdminNavbar from "components/Navbars/AdminNavbar.js";
 import Footer from "components/Footer/Footer.js";
 import Sidebar from "components/Sidebar/Sidebar.js";
 import FixedPlugin from "components/FixedPlugin/FixedPlugin.js";
-
 import routes from "routes.js";
-
 import logo from "assets/img/react-logo.png";
 import { BackgroundColorContext } from "contexts/BackgroundColorContext";
 import { useTranslation } from "react-i18next";
 import brandLogo from "../../assets/img/cdacLogo.png";
-var ps;
+import { useSelector } from "react-redux";
 
-function Admin(props) {
+function Admin() {
+  const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
   const { t } = useTranslation();
-
   const location = useLocation();
-  const mainPanelRef = React.useRef(null);
-  const [sidebarOpened, setsidebarOpened] = React.useState(
+  const mainPanelRef = useRef(null);
+  const [sidebarOpened, setSidebarOpened] = React.useState(
     document.documentElement.className.indexOf("nav-open") !== -1
   );
-  React.useEffect(() => {
-    if (navigator.platform.indexOf("Win") > -1) {
+  useEffect(() => {
+    let ps;
+
+    if (navigator.platform.indexOf("Win") > -1 && mainPanelRef.current) {
       document.documentElement.className += " perfect-scrollbar-on";
       document.documentElement.classList.remove("perfect-scrollbar-off");
       ps = new PerfectScrollbar(mainPanelRef.current, {
@@ -37,20 +34,21 @@ function Admin(props) {
         ps = new PerfectScrollbar(tables[i]);
       }
     }
-    // Specify how to clean up after this effect:
+
     return function cleanup() {
-      if (navigator.platform.indexOf("Win") > -1) {
+      if (ps && navigator.platform.indexOf("Win") > -1) {
         ps.destroy();
         document.documentElement.classList.add("perfect-scrollbar-off");
         document.documentElement.classList.remove("perfect-scrollbar-on");
       }
     };
-  });
-  React.useEffect(() => {
+  }, [mainPanelRef]);
+
+  useEffect(() => {
     if (navigator.platform.indexOf("Win") > -1) {
       let tables = document.querySelectorAll(".table-responsive");
       for (let i = 0; i < tables.length; i++) {
-        ps = new PerfectScrollbar(tables[i]);
+        let ps = new PerfectScrollbar(tables[i]);
       }
     }
     document.documentElement.scrollTop = 0;
@@ -59,11 +57,12 @@ function Admin(props) {
       mainPanelRef.current.scrollTop = 0;
     }
   }, [location]);
-  // this function opens and closes the sidebar on small devices
+
   const toggleSidebar = () => {
     document.documentElement.classList.toggle("nav-open");
-    setsidebarOpened(!sidebarOpened);
+    setSidebarOpened(!sidebarOpened);
   };
+
   const getRoutes = (routes) => {
     return routes.map((prop, key) => {
       if (prop.layout === "/admin") {
@@ -75,6 +74,7 @@ function Admin(props) {
       }
     });
   };
+
   const getBrandText = (path) => {
     for (let i = 0; i < routes.length; i++) {
       if (location.pathname.indexOf(routes[i].layout + routes[i].path) !== -1) {
@@ -83,42 +83,44 @@ function Admin(props) {
     }
     return "Brand";
   };
+
   return (
     <BackgroundColorContext.Consumer>
       {({ color, changeColor }) => (
         <React.Fragment>
-          <div className="wrapper">
-            <Sidebar
-              routes={routes}
-              logo={{
-                // outterLink: "https://www.cdac.in",
-                text: t("SCADA"),
-                imgSrc: logo,
-              }}
-              toggleSidebar={toggleSidebar}
-            />
-            <div className="main-panel" ref={mainPanelRef} data={color}>
-              <AdminNavbar
-                brandlogo={brandLogo}
-                brandText={t("RtScadaDashboard")}
+          {isLoggedIn ? (
+            <div className="wrapper">
+              <Sidebar
+                routes={routes}
+                logo={{
+                  text: t("SCADA"),
+                  imgSrc: logo,
+                }}
                 toggleSidebar={toggleSidebar}
-                sidebarOpened={sidebarOpened}
-                isLoggedIn={props.isLoggedIn}
               />
-              <Routes>
-                {getRoutes(routes)}
-                <Route
-                  path="/"
-                  element={<Navigate to="/admin/dashboard" replace />}
+              <div className="main-panel" ref={mainPanelRef} data={color}>
+                <AdminNavbar
+                  brandlogo={brandLogo}
+                  brandText={t("RtScadaDashboard")}
+                  toggleSidebar={toggleSidebar}
+                  sidebarOpened={sidebarOpened}
                 />
-              </Routes>
-              {
-                // we don't want the Footer to be rendered on map page
-                location.pathname === "/admin/maps" ? null : <Footer fluid />
-              }
+                <Routes>
+                  {getRoutes(routes)}
+                  <Route
+                    path="/"
+                    element={<Navigate to="/admin/dashboard" replace />}
+                  />
+                </Routes>
+                {location.pathname === "/admin/maps" ? null : <Footer fluid />}
+              </div>
+              {isLoggedIn && (
+                <FixedPlugin bgColor={color} handleBgClick={changeColor} />
+              )}
             </div>
-          </div>
-          <FixedPlugin bgColor={color} handleBgClick={changeColor} />
+          ) : (
+            <Navigate to="/login" />
+          )}
         </React.Fragment>
       )}
     </BackgroundColorContext.Consumer>
