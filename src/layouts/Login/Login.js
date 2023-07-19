@@ -100,6 +100,7 @@ function Login(props) {
               <LoginView />
             </div>
           </div>
+          <Footer fluid />
           <FixedPlugin bgColor={color} handleBgClick={changeColor} />
         </React.Fragment>
       )}

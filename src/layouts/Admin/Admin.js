@@ -88,7 +88,7 @@ function Admin() {
     <BackgroundColorContext.Consumer>
       {({ color, changeColor }) => (
         <React.Fragment>
-          {isLoggedIn ? (
+          {isLoggedIn || !isLoggedIn ? (
             <div className="wrapper">
               <Sidebar
                 routes={routes}

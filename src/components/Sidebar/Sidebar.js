@@ -13,9 +13,12 @@ import {
   BackgroundColorContext,
   backgroundColors,
 } from "contexts/BackgroundColorContext";
+import { useTranslation } from "react-i18next";
+
 var ps;
 
 function Sidebar(props) {
+  const { t } = useTranslation();
   const location = useLocation();
   const sidebarRef = React.useRef(null);
   // verifies if routeName is the one active (in browser input)

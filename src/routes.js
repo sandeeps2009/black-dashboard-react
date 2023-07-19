@@ -5,13 +5,20 @@ import Notifications from "views/Notifications.js";
 import TableList from "views/TableList.js";
 import Typography from "views/Typography.js";
 import UserProfile from "views/UserProfile.js";
-
+import RTAlarmMonitoring from "views/SCADA/Alarms.js";
 var routes = [
   {
     path: "/dashboard",
     name: "SLDC Dashboard",
     icon: "tim-icons icon-chart-pie-36",
     component: <Dashboard />,
+    layout: "/admin",
+  },
+  {
+    path: "/alarms",
+    name: "Realtime Alarm monitoring",
+    icon: "tim-icons icon-sound-wave",
+    component: <RTAlarmMonitoring />,
     layout: "/admin",
   },
   {
