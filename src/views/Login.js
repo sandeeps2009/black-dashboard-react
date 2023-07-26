@@ -54,12 +54,18 @@ function Login() {
               <Form onSubmit={handleLogin}>
                 <FormGroup>
                   <label>{t("username")}</label>
-                  <Input name="username" placeholder="Username" type="text" />
+                  <Input
+                    name="username"
+                    value={"sandeep"}
+                    placeholder="Username"
+                    type="text"
+                  />
                 </FormGroup>
                 <FormGroup>
                   <label>{t("password")}</label>
                   <Input
                     name="password"
+                    value={"123123"}
                     placeholder="Password"
                     type="password"
                   />

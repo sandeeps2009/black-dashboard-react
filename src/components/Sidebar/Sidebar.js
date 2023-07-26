@@ -129,8 +129,18 @@ function Sidebar(props) {
                         return isActive;
                       }}
                     >
-                      <i className={prop.icon} />
-                      <p>{rtlActive ? prop.rtlName : prop.name}</p>
+                      <i
+                        className={`${prop.icon} tab-icon ${activeRoute(
+                          prop.layout + prop.path
+                        )}`}
+                      />
+                      <p
+                        className={`tab-p ${activeRoute(
+                          prop.layout + prop.path
+                        )}`}
+                      >
+                        {prop.name}
+                      </p>
                     </NavLink>
                   </li>
                 );

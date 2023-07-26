@@ -19,7 +19,7 @@ function Alarms() {
 
   const [rtAlarms, setRtAlarms] = useState([]);
   const [reachedMaxEntries, setReachedMaxEntries] = useState(false);
-
+  // Realtime data simulation
   useEffect(() => {
     let interval;
 

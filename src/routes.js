@@ -6,12 +6,20 @@ import TableList from "views/TableList.js";
 import Typography from "views/Typography.js";
 import UserProfile from "views/UserProfile.js";
 import RTAlarmMonitoring from "views/SCADA/Alarms.js";
+import RTScadaDashboard from "views/SCADA/Dashbaord.js";
 var routes = [
   {
     path: "/dashboard",
     name: "SLDC Dashboard",
     icon: "tim-icons icon-chart-pie-36",
     component: <Dashboard />,
+    layout: "/admin",
+  },
+  {
+    path: "/RealtimeDashboard",
+    name: "Realtime SCADA Dashboard",
+    icon: "tim-icons icon-chart-pie-36",
+    component: <RTScadaDashboard />,
     layout: "/admin",
   },
   {

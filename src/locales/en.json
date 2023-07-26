@@ -48,5 +48,9 @@
   "notificationsName": "Notifications",
   "userProfileName": "User Profile",
   "tableListName": "Table List",
-  "typographyName": "Typography"
+  "typographyName": "Typography",
+  "telemetersMeasurands": "Telemeters Measurands",
+  "telemetersIdication": "Telemeters Indication",
+  "computedMeasurands": "Computed Measurands",
+  "computedIdication": "Computed Indication"
 }

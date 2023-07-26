@@ -493,7 +493,6 @@ $icon-size-sm: 1.875rem !default;
 $icon-font-size-lg: 1.325rem !default;
 $icon-size-lg: 3.6rem !default;
 $icon-size-xl: 5rem !default;
-
 // Tables
 
 $table-cell-padding: 1rem !default;
@@ -608,8 +607,8 @@ $input-border-width: $input-btn-border-width !default;
 $input-box-shadow: none !default; // 0 1px 3px 0 $gray-400 !default;
 
 $input-focus-bg: $white !default;
-$input-focus-border-color: rgba(50, 151, 211, 0.25);
-$input-focus-color: #000;
+$input-focus-border-color: rgba(0, 144, 227, 0.25);
+$input-focus-color: #ffffff;
 $input-focus-width: 0 !default;
 $input-focus-box-shadow: none !default; //0 1px 3px 0 $gray-500 !default;
 

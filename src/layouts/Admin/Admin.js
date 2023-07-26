@@ -114,9 +114,8 @@ function Admin() {
                 </Routes>
                 {location.pathname === "/admin/maps" ? null : <Footer fluid />}
               </div>
-              {isLoggedIn && (
-                <FixedPlugin bgColor={color} handleBgClick={changeColor} />
-              )}
+
+              <FixedPlugin bgColor={color} handleBgClick={changeColor} />
             </div>
           ) : (
             <Navigate to="/login" />

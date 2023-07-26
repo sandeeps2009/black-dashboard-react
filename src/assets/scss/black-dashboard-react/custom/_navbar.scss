@@ -2,8 +2,7 @@
   padding: 10px 30px 10px 15px;
   width: 100%;
   z-index: 1050;
-  background: $navbar-color;
-
+  background: transparent;
   .photo {
     display: inline-block;
     height: 30px;
@@ -127,6 +126,15 @@
   .navbar-toggler {
     outline: none;
   }
+  // Active Tab
+  .nav-tabs .nav-link.active {
+    background-color: $info;
+    color: #fff;
+  }
+  .nav-tabs .nav-link.hover {
+    background-color: $info;
+    color: #fff;
+  }
 }
 
 .navbar-minimize-fixed {
@@ -189,7 +197,6 @@
       .btn {
         margin-left: -3px;
         display: flex;
-
         i {
           margin-right: 12px;
         }
@@ -287,7 +294,6 @@
       height: 1px;
       border-radius: 1px;
       background: $white;
-
       &.navbar-kebab {
         height: 4px;
         width: 4px;

@@ -8,6 +8,9 @@
     height: auto;
   }
 }
+.sidebar-wrapper ul li > a {
+  color: #000 !important;
+}
 
 .sidebar-wrapper ul li div.collapse ul li div.collapse ul li a,
 .sidebar-wrapper ul li div.collapse ul li div.collapsing ul li a,
@@ -16,6 +19,9 @@
 }
 .sidebar,
 .off-canvas-sidebar {
+  .nav-normal {
+    color: $black;
+  }
   // BG color
   @include linear-gradient($default-states, $default);
   height: calc(100vh - 90px);
@@ -44,14 +50,12 @@
     .nav-link.active {
       border-radius: 5px;
       color: $white;
-      // background-color: #586aa7;
-      background-color: $navbar-dark-active-bg;
+      background-color: $info;
     }
     .nav-link:hover {
       border-radius: 5px;
-      color: $white;
-      // background-color: #768dc6;
-      background-color: $navbar-dark-hover-bg;
+      color: $black;
+      background-color: $info;
     }
     .dropdown .dropdown-backdrop {
       display: none !important;
@@ -61,7 +65,7 @@
       border: none;
     }
 
-    > .nav,
+    .nav,
     .user .info {
       [data-toggle="collapse"] ~ div > ul > li > a {
         span {
@@ -189,8 +193,7 @@
       &:focus:not(.active) > a i {
         color: $white;
       }
-
-      &.active > a:not([data-toggle="collapse"]) {
+      – &.active > a:not([data-toggle="collapse"]) {
         background: transparent;
 
         i,
@@ -758,4 +761,17 @@
     padding-left: 15px;
     padding-right: 15px;
   }
+}
+
+.nav-link .tab-p {
+  color: white;
+}
+.nav-link.active .tab-p {
+  color: white !important; /* Change the color to red when the NavLink is active */
+}
+.nav-link .tab-icon {
+  color: white !important;
+}
+.sidebar .nav-link.active .tab-icon {
+  color: white !important;
 }
