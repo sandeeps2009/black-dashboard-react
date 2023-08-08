@@ -364,4 +364,29 @@
     background-color: rgba($info, 0.6);
     color: black;
   }
+  .icon-button-view {
+    margin: 5px;
+    color: white;
+    background-color: #3aa754;
+  }
+
+  .search-entry {
+    background-color: #f5f5f5; /* Replace with your desired background color */
+    border: 2px solid #ccc; /* Replace with your desired border color */
+    border-radius: 5px;
+    padding: 8px;
+    color: #333; /* Replace with your desired text color */
+    font-size: 14px;
+    outline: none;
+    transition: border-color 0.3s ease;
+  }
+
+  .search-entry::placeholder {
+    color: #aaa; /* Replace with your desired placeholder color */
+  }
+
+  .search-entry:focus {
+    border-color: #007bff; /* Replace with your desired focus color */
+    box-shadow: 0 0 8px rgba(0, 123, 255, 0.5); /* Optional: Add a subtle box shadow on focus */
+  }
 }

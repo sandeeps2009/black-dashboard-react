@@ -52,5 +52,17 @@
   "telemetersMeasurands": "Telemeters Measurands",
   "telemetersIdication": "Telemeters Indication",
   "computedMeasurands": "Computed Measurands",
-  "computedIdication": "Computed Indication"
+  "computedIdication": "Computed Indication",
+  "tagNo": "Tag No",
+  "tagName": "Tag Name",
+  "description": "Description",
+  "type": "Type",
+  "Action": "Action",
+  "new": "New",
+  "previous": "Previous",
+  "next": "Next",
+  "showing": "Showing",
+  "to": "to",
+  "of": "of",
+  "entries": "entries"
 }
